@@ -1,7 +1,9 @@
 from sqlalchemy import String, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy import String, Enum as SQLAlchemyEnum
+from sqlalchemy import String, Date, Enum as SQLAlchemyEnum
+from datetime import datetime, date
+
 
 from database import Base;
 import uuid
@@ -18,3 +20,4 @@ class ApplicationModel(Base):
     status: Mapped[ApplicationStatus] = mapped_column(SQLAlchemyEnum(ApplicationStatus),
     nullable=False,
     default = ApplicationStatus.APPLIED)
+    lastUpdated: Mapped[date] = mapped_column(Date, nullable=False)
